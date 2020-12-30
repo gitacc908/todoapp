@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}
+To-Do list
+{% endblock title %}
+
+{% block content %}
+<nav aria-label="breadcrumb" class="mt-3">
+      <ol class="breadcrumb">
+      	<li class="breadcrumb-item"><a href="{% url 'todolist' %}">Home</a></li>
+      	{% for category in categories %}
+		<li class="breadcrumb-item active"><a href="{% url 'category' category.slug %}">{{ category.name }}</a></li> 
+        {% endfor %}
+      </ol>
+  </nav>
+
+<h4 class="card-title">Awesome Todo list</h4>
+
+	 <form method='POST' action="{% url 'maketask' %}" class="add-items d-flex"> 
+	 	{% csrf_token %}
+	 	<input type="text" name='content' class="form-control todo-list-input" placeholder="What do you need to do today?"> 
+	 	<button type='submit' class="add btn btn-primary font-weight-bold todo-list-add-btn">Add</button> 
+	 </form>
+	
+
+
+<div class="list-wrapper" >
+	<ul class="d-flex flex-column-reverse todo-list">
+		{% for item in tasks %}
+
+		{% if item.completed %}
+		<li class="completed">
+			<form action ="{% url 'setattr' item.slug %}" method="POST" class="mr-2">
+			{% csrf_token %}  
+				<button type="submit">
+					<span class="material-icons">cancel</span>
+				</button> 
+			</form>
+			<a href="{% url 'update' item.slug %}"><p style="display:inline;color:black; font-family: 'Lobster', cursive; font-size: 150%;">{{ item.content }}</p></a>
+			<form method="POST" class="remove" action="{% url 'delete' item.slug %}">
+				{% csrf_token %}
+				<button type="submit" ><i class="material-icons">delete</i></button>
+
+			</form>
+		</li>
+
+		{% else %}
+		<li>
+			<form action ="{% url 'setattr' item.slug %}" method="POST" class="mr-2">
+			{% csrf_token %}  
+				<button type="submit">
+					<span class="material-icons">check_circle</span>
+				</button> 
+			</form>
+			<a href="{% url 'update' item.slug %}"><p style="color:black;display:inline;font-family: 'Lobster', cursive; font-size: 150%;">{{ item.content }}</p></a>
+			<form method="POST" class="remove" action="{% url 'delete' item.slug %}">
+				{% csrf_token %}
+				<button type="submit" ><i class="material-icons">delete</i></button>
+
+			</form>
+			
+		</li>
+		{% endif %}
+		{% endfor %}
+
+	</ul>
+</div>
+{% endblock content %}

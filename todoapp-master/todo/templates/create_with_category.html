@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+Create with category
+{% endblock title %}
+
+{% block content %}
+
+<h4 class="card-title">Create task with category</h4>
+
+
+<div class="list-wrapper">
+	<ul class="d-flex flex-column-reverse todo-list">
+		<form method="POST">
+			{% csrf_token %}
+			{{ form }}
+			<button type="submit" class="btn btn-success">Create</button>
+		</form>
+
+	</ul>
+</div>
+{% endblock content %}

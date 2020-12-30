@@ -1,0 +1,55 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>{% block title %}{% endblock title %}</title>
+    <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{% url 'todolist' %}"><i class="fa fa-home"></i> </a>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'create' %}">Create task with category</a>
+      </li>
+       <li class="nav-item active">
+        <a class="nav-link" href="{% url 'create_category' %}">Create category</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<body oncontextmenu='return false' class='snippet-body'>
+    <div class="page-content page-container" id="page-content">
+        <div class="padding">
+            
+            <div class="row container d-flex justify-content-center">
+               
+                <div class="col-md-12">
+
+                    <div class="card px-3">
+                        
+                        <div class="card-body">
+                            {% block content %}
+                             {% endblock %}
+                        </div>
+
+                    </div>
+                  
+                </div>
+            
+            </div>
+            
+        </div>
+
+    </div>
+
+</body>
+
+</html>

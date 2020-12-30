@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+To-Do list
+{% endblock title %}
+
+{% block content %}
+<nav aria-label="breadcrumb" class="mt-3">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'todolist' %}">Home</a></li>
+        {% if task.category %}
+         <li class="breadcrumb-item active">{{ task.category }}</li>
+         {% else %}
+         <li class="breadcrumb-item active">No category</li>
+         {% endif %}
+		</ol>
+    </nav>
+<h4 class="card-title">Awesome Todo list</h4>
+
+
+<div class="list-wrapper">
+	<ul class="d-flex flex-column-reverse todo-list">
+		<form method="POST">
+			{% csrf_token %}
+			{{ form }}
+			<button type="submit" class="btn btn-success">Update</button>
+		</form>
+
+	</ul>
+</div>
+{% endblock content %}
