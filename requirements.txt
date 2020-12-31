@@ -1,22 +1,22 @@
 asgiref==3.3.1
-<<<<<<< HEAD
+
 dj-database-url==0.5.0
-=======
->>>>>>> 818250b... git init
+
+
 Django==3.1.4
 django-autoslug==1.9.8
 django-crispy-forms==1.10.0
 djangorestframework==3.12.2
-<<<<<<< HEAD
+
 gunicorn==20.0.4
 psycopg2==2.8.6
-=======
->>>>>>> 818250b... git init
+
+
 python-memcached==1.59
 pytz==2020.4
 six==1.15.0
 sqlparse==0.4.1
-<<<<<<< HEAD
+
 whitenoise==5.2.0
-=======
->>>>>>> 818250b... git init
+
+
